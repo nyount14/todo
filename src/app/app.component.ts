@@ -25,6 +25,7 @@ onAdd(){
   this.todoarray.push({todoitem: this.todoitem})
   console.log(this.todoarray)
   this.postsService.createAndStorePost(this.todoitem);
+  this.todoitem = '';
 }
 
 onDelete(i){
