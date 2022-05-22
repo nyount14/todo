@@ -11,6 +11,7 @@ const appRoutes = [
   // },
   {
     path: 'auth',
+    canActivate: [SessionGuard]
     loadChildren: () =>
       import('./auth/auth.module').then((m) => m.AuthModule),
   },

@@ -13,6 +13,7 @@ export class AuthComponent implements OnInit {
   authObsrv: Observable<AuthResponseData>;
   errMsg: string = null;
   isLoginMode = true;
+  msg:string = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -42,7 +43,13 @@ export class AuthComponent implements OnInit {
     this.authObsrv.subscribe(
       (res) => {
         console.log('AUTH RESPONSE SUCCESS:', res);
-        if (!this.isLoginMode) this.isLoginMode = !this.isLoginMode
+        if(this.isLoginMode){
+          this.router.navigate(['tasks'])
+        }else{
+          this.isLoginMode = !this.isLoginMode
+          this.msg = "Thank you for signing up.  Please login."
+        }
+
 
         if (this.errMsg) this.errMsg = null;
         // this.router.navigate(['tasks']);

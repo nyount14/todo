@@ -21,7 +21,9 @@ export class AuthInterceptorService implements HttpInterceptor {
 
         // Modify the reqest to attach the access token
         const modifiedReq = req.clone({
-          params: new HttpParams().set('auth', user.token),
+          setHeaders: {
+            Authorization: "Bearer " + user.token
+          }
         });
 
         // Return the modified request

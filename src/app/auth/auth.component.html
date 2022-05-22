@@ -15,7 +15,7 @@
         />
       </div>
 
-      PASSWORD
+      <!-- PASSWORD -->
       <div class="form-group">
         <label for="password">Password</label>
         <input
@@ -29,7 +29,7 @@
         />
       </div>
 
-      BUTTONS
+      <!-- BUTTONS -->
       <button
         class="btn-primary btn"
         type="submit"
@@ -42,6 +42,9 @@
         Switch to {{ isLoginMode ? "Sign Up" : "Sign In" }}
       </button>
     </form>
+
+    <!-- ERROR -->
     <p class="alert alert-danger mt-3" *ngIf="errMsg">{{ errMsg }}</p>
+    <p class="alert alert-success mt-3" *ngIf="msg">{{ msg }}</p>
   </div>
 </div>

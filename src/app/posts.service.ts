@@ -15,7 +15,7 @@ export class PostsService {
     const postData: {todoitem: string} = { todoitem: todoitem };
     this.http
       .post<{ todoitem: string }>(
-        'https://nancy-project-6b73b-default-rtdb.firebaseio.com/posts.json',
+        'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks',
         postData,
         {
           observe: 'response'
@@ -34,7 +34,7 @@ export class PostsService {
     fetchPosts() {
       return this.http
         .get<{}>(
-          'https://nancy-project-6b73b-default-rtdb.firebaseio.com/posts.json'
+          'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks'
       )
       .pipe(
         map(responseData => {
@@ -55,7 +55,7 @@ export class PostsService {
     overrideData(todoarray) {
       this.http
         .put(
-          'https://nancy-project-6b73b-default-rtdb.firebaseio.com/posts.json',
+          'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks',
           todoarray
         )
         .subscribe(response => {
