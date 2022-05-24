@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment.prod';
 
 const SIGN_UP_URL =
-  'http://nancys-todo-list.herokuapp.com/api/vi/users/create';
+  'https://nancys-todo-list.herokuapp.com/api/v1/users/create';
 const SIGN_IN_URL =
-  'http://nancys-todo-list.herokuapp.com/api/vi/users/login';
+  'https://nancys-todo-list.herokuapp.com/api/v1/users/login';
 
 export interface AuthResponseData {
   kind: string;

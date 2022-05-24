@@ -7,12 +7,15 @@ import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './shared/navigation/navigation.component';
+import { AuthModule } from './shared/auth/auth.module';
+import { AuthComponent } from './shared/auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksComponent,
-    NavigationComponent
+    NavigationComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
