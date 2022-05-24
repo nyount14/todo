@@ -1,0 +1,29 @@
+<h1 style="text-align: center">To Do List</h1>
+
+<hr />
+
+<div style="text-align: center">
+  <input type="text" [(ngModel)]="todoitem" />
+</div>
+
+<hr />
+
+<div style="text-align: center">
+  <button class="btn btn-success" (click)="onAdd()">Add a new To Do</button>
+</div>
+
+<hr />
+
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    *ngFor="let item of todoarray; let i = index"
+    style="text-align: center"
+  >
+    <button class="btn-danger" (click)="onDelete(i)">Delete</button>
+    {{ item.todoitem }}
+  </li>
+</ul>
+
+<!-- [{toditem: "test"}, "tea"]
+[{toditem: "test"}, {todoitem: 'tea'}] -->

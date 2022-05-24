@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthComponent } from './shared/auth/auth.component';
+import { SessionGuard } from './shared/auth/session.guard';
+import { TasksComponent } from './tasks/tasks.component';
 
 const appRoutes = [
-  { path: '', redirectTo: '/tasks', pathMatch: 'full' },
-  // {
-  //   path: 'tasks',
-  //   loadChildren: () =>
-  //     import('./tasks/task.module').then((m) => m.TaskModule),
-  // },
+  { path: '', component: AuthComponent },
+  {
+    path: 'tasks',
+    component: TasksComponent
+  },
   {
     path: 'auth',
-    canActivate: [SessionGuard]
-    loadChildren: () =>
-      import('./auth/auth.module').then((m) => m.AuthModule),
+    canActivate: [SessionGuard],
+    component: AuthComponent,
   },
 ];
 

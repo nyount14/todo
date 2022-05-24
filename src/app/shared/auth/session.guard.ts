@@ -13,7 +13,7 @@ export class SessionGuard implements CanActivate {
     const userData = JSON.parse(localStorage.getItem('userData'))
     //if data persists in the browser, navigate to tasks
     if(userData){
-      return this.router.createURLTree(['tasks'])
+      return this.router.createUrlTree(['tasks'])
     }else{
       return true;
     }
