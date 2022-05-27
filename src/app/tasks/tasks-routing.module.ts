@@ -35,4 +35,4 @@ const routes: Routes = [
   FormsModule],
   exports: [RouterModule],
 })
-export class BookshelfRoutingModule {}
+export class TasksRoutingModule {}
