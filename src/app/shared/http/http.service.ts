@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { TasksService } from '../../tasks/tasks.service';
+import { Task } from '../../tasks/task.model';
+import { tap } from 'rxjs/operators';
 
 
 
@@ -9,7 +11,10 @@ import { map } from 'rxjs/operators';
 })
 export class HttpService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private tasksService: TasksService
+    ) {}
 
   createAndStorePost(todoitem: string) {
     const postData: {todoitem: string} = { todoitem: todoitem };
@@ -31,21 +36,36 @@ export class HttpService {
 
 
 
+    // fetchPosts() {
+    //   return this.http
+    //     .get<{}>(
+    //       'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks'
+    //   )
+    //   .pipe(
+    //     map(responseData => {
+    //       const postsArray: any[] = [];
+    //       for (const key in responseData) {
+    //         if (responseData.hasOwnProperty(key)) {
+    //           postsArray.push({ ...responseData[key], id: key });
+    //         }
+    //     }
+    //     return postsArray;
+    // }))
+
+
     fetchPosts() {
       return this.http
         .get<{}>(
           'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks'
       )
       .pipe(
-        map(responseData => {
-          const postsArray: any[] = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              postsArray.push({ ...responseData[key], id: key });
-            }
-        }
-        return postsArray;
-    }))
+        tap((res: any) => {
+          this.tasksService.setTasks(res.payload)
+        })
+      )
+
+
+
       // .subscribe(
       //   responseData => {
       //     console.log(responseData);
