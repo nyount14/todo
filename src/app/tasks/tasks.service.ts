@@ -17,9 +17,9 @@ export class TasksService {
     return this.myTasks.slice();
   }
 
-  getTasks(idx: number) {
-    return this.myTasks.slice()[idx];
-  }
+  // getTasks(idx: number) {
+  //   return this.myTasks.slice()[idx];
+  // }
 
   // CREATE
   saveTask(task: Task) {

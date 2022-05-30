@@ -15,15 +15,15 @@ export class TasksComponent implements OnInit {
   constructor(private HttpService: HttpService) {}
   ngOnInit(): void {
     this.HttpService.fetchPosts().subscribe((responseData) => {
-      this.todoarray = responseData;
-      console.log(responseData);
+      this.todoarray = responseData.payload;
+      console.log("FETCH TASKS", responseData);
     });
   }
 
   onAdd() {
     // {todoitem: "milk", id: "4534534", "tea"}
     // {todoitem: this.toditem}
-    this.todoarray.push({ todoitem: this.todoitem });
+    this.todoarray.push({ task: this.todoitem });
     console.log(this.todoarray);
     this.HttpService.createAndStorePost(this.todoitem);
     this.todoitem = '';

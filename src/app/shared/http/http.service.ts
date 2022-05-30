@@ -17,10 +17,10 @@ export class HttpService {
     ) {}
 
   createAndStorePost(todoitem: string) {
-    const postData: {todoitem: string} = { todoitem: todoitem };
+    const postData: {task: string} = { task: todoitem };
     this.http
       .post<{ todoitem: string }>(
-        'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks',
+        'https://nancys-todo-list.herokuapp.com/api/v1/tasks',
         postData,
         {
           observe: 'response'
@@ -56,7 +56,7 @@ export class HttpService {
     fetchPosts() {
       return this.http
         .get<{}>(
-          'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks'
+          'https://nancys-todo-list.herokuapp.com/api/v1/tasks/my_tasks'
       )
       .pipe(
         tap((res: any) => {
@@ -75,7 +75,7 @@ export class HttpService {
     overrideData(todoarray) {
       this.http
         .put(
-          'http://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks',
+          'https://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks',
           todoarray
         )
         .subscribe(response => {
