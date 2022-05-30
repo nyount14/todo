@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/http/http.service';
 import { FormsModule, NgModel } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { Task } from './task.model';
 
 
 @Component({
@@ -11,6 +13,7 @@ import { FormsModule, NgModel } from '@angular/forms';
 export class TasksComponent implements OnInit {
   todoitem: string = '';
   todoarray: any[] = [];
+  taskSelected = new Subject<Task>();
 
   constructor(private HttpService: HttpService) {}
   ngOnInit(): void {
@@ -21,16 +24,22 @@ export class TasksComponent implements OnInit {
   }
 
   onAdd() {
-    // {todoitem: "milk", id: "4534534", "tea"}
-    // {todoitem: this.toditem}
     this.todoarray.push({ task: this.todoitem });
     console.log(this.todoarray);
     this.HttpService.createAndStorePost(this.todoitem);
     this.todoitem = '';
   }
 
-  onDelete(i) {
-    this.todoarray.splice(i, 1);
-    this.HttpService.overrideData(this.todoarray);
+  getTaskById(id:number){
+    return this.todoarray.find(task => task.id === id)
+  }
+
+  onDelete(id: number) {
+    this.taskSelected.next(this.getTaskById(id));
+    this.todoarray = this.todoarray.filter(task => task.id != id)
+    this.HttpService.deleteTask(id).subscribe((res: any) => {
+      console.log("REMOVED TASK", res)
+    });
+
   }
 }

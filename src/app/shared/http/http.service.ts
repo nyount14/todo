@@ -75,12 +75,16 @@ export class HttpService {
     overrideData(todoarray) {
       this.http
         .put(
-          'https://nancys-todo-list.herokuapp.com/api/vi/tasks/my_tasks',
+          'https://nancys-todo-list.herokuapp.com/api/v1/tasks/my_tasks',
           todoarray
         )
         .subscribe(response => {
           console.log(response);
         });
 
-  };
+    };
+
+    deleteTask(id:number){
+      return this.http.delete(`https://nancys-todo-list.herokuapp.com/api/v1/tasks/${id}`)
+    }
 }

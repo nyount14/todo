@@ -20,7 +20,7 @@
     *ngFor="let item of todoarray; let i = index"
     style="text-align: center"
   >
-    <button class="btn-danger" (click)="onDelete(i)">Delete</button>
+    <button class="btn-danger" (click)="onDelete(item.id)">Delete</button>
     {{ item.task }}
   </li>
 </ul>
