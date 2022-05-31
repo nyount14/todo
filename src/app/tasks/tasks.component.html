@@ -21,8 +21,16 @@
     style="text-align: center"
   >
     <button class="btn-danger" (click)="onDelete(item.id)">Delete</button>
-    {{ item.task }}
+    <br>
+    <button class="btn-success" (click)="onEdit(i)">Edit</button>
+    <div>
+      <p *ngIf="!showInput" (click)="onEdit(i)">{{ item.task }}</p>
+      <!-- show an input element ngif showInput
+        and show the input element on the array item that has a matching index -->
+      <input *ngIf="showInput && selectedIndex === i">
+    </div>
   </li>
+
 </ul>
 
 <!-- [{toditem: "test"}, "tea"]

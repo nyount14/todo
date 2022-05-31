@@ -14,6 +14,8 @@ export class TasksComponent implements OnInit {
   todoitem: string = '';
   todoarray: any[] = [];
   taskSelected = new Subject<Task>();
+  showInput: boolean = false;
+  selectedIndex: number = null;
 
   constructor(private HttpService: HttpService) {}
   ngOnInit(): void {
@@ -41,5 +43,12 @@ export class TasksComponent implements OnInit {
       console.log("REMOVED TASK", res)
     });
 
+  }
+
+  onEdit(i: number){
+    this.showInput = !this.showInput
+    this.selectedIndex = i
+
+    // update todoarray
   }
 }
