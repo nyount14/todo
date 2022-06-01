@@ -59,5 +59,6 @@ export class TasksComponent implements OnInit {
     console.log("UPDATED INFO", this.todoarray)
     this.HttpService.updateTask(this.todoarray[i])
     this.updatedItem = '';
+    this.showInput = false;
   }
 }

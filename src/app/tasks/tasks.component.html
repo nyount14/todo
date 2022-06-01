@@ -22,6 +22,7 @@
   >
     <button class="btn-danger" (click)="onDelete(item.id)">Delete</button>
     <br>
+    <br>
     <div>
       <p (click)="onEdit(i)">{{ item.task }}</p>
       <input *ngIf="showInput && selectedIndex === i" type="text" [(ngModel)]="updatedItem" />
