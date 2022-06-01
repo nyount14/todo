@@ -22,12 +22,10 @@
   >
     <button class="btn-danger" (click)="onDelete(item.id)">Delete</button>
     <br>
-    <button class="btn-success" (click)="onEdit(i)">Edit</button>
     <div>
-      <p *ngIf="!showInput" (click)="onEdit(i)">{{ item.task }}</p>
-      <!-- show an input element ngif showInput
-        and show the input element on the array item that has a matching index -->
-      <input *ngIf="showInput && selectedIndex === i">
+      <p (click)="onEdit(i)">{{ item.task }}</p>
+      <input *ngIf="showInput && selectedIndex === i" type="text" [(ngModel)]="updatedItem" />
+      <button *ngIf="showInput && selectedIndex === i" class="btn-alert" (click)="onUpdate(i)">Update</button>
     </div>
   </li>
 

@@ -33,6 +33,18 @@ export class HttpService {
       );
     }
 
+    overrideData(todoarray: any[]) {
+      this.http
+        .put(
+          'https://nancys-todo-list.herokuapp.com/api/v1/tasks',
+          todoarray
+        )
+        .subscribe(response => {
+          console.log("UPDATED TASK", response);
+        });
+
+    };
+
 
 
 
@@ -72,17 +84,16 @@ export class HttpService {
       //   },
       // );
     }
-    overrideData(todoarray) {
-      this.http
-        .put(
-          'https://nancys-todo-list.herokuapp.com/api/v1/tasks/my_tasks',
-          todoarray
-        )
-        .subscribe(response => {
-          console.log(response);
-        });
 
-    };
+
+
+    updateTask(task: Task){
+      return this.http.put(`https://nancys-todo-list.herokuapp.com/api/v1/tasks/${task.id}`,
+      task)
+      .subscribe(response => {
+        console.log("UPDATED TASK", response);
+      });
+    }
 
     deleteTask(id:number){
       return this.http.delete(`https://nancys-todo-list.herokuapp.com/api/v1/tasks/${id}`)

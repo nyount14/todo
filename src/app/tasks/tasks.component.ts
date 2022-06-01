@@ -16,6 +16,7 @@ export class TasksComponent implements OnInit {
   taskSelected = new Subject<Task>();
   showInput: boolean = false;
   selectedIndex: number = null;
+  updatedItem: string = '';
 
   constructor(private HttpService: HttpService) {}
   ngOnInit(): void {
@@ -49,6 +50,14 @@ export class TasksComponent implements OnInit {
     this.showInput = !this.showInput
     this.selectedIndex = i
 
+  }
+
+  onUpdate(i: number){
     // update todoarray
+    this.todoarray[i].task = this.updatedItem
+    // this.todoarray.splice(i, 1, this.updatedItem)
+    console.log("UPDATED INFO", this.todoarray)
+    this.HttpService.updateTask(this.todoarray[i])
+    this.updatedItem = '';
   }
 }
